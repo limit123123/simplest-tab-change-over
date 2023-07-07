@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+   
+        ul{
+            list-style: none;
+        }
+        .tab{
+            width: 500px;
+            height: 400px;
+        }
+        .tab-head ul{
+            display: flex;
+            align-items: center;
+        }
+
+
+        .tab-head ul li{
+            margin-left: 20px;
+          
+        }
+
+        .tab-head .active{
+            color:skyblue
+
+        }
+
+        .tab-content div{
+            display: none;
+        }
+
+        .tab-content .item_curr{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tab">
+
+        <div class="tab-head">
+            <ul>
+                <li>Tab1</li>
+                <li>Tab2</li>
+                <li>Tab3</li>
+            </ul>
+        </div>
+        <hr>
+
+        <div class="tab-content">
+            <div>我是tab1</div>
+            <div>我是tab2</div>
+            <div>我是tab3</div>
+        </div>
+
+    </div>
+
+<script>
+    //获取所有的li标签
+    let lis=document.querySelectorAll('li')
+    //获取tab-content
+    let tab_content=document.querySelector('.tab-content')
+
+    //获取tab-content的子元素节点
+    let item=tab_content.children
+
+    //给所有的li绑定点击事件
+    for(let i=0;i<lis.length;i++){
+        //被点击的li添加索引号
+        lis[i].setAttribute('index',i)
+        lis[i].addEventListener('click',function () {
+            for(let i=0;i<lis.length;i++){
+                //移除所有类名，否则会出现堆积现象
+                lis[i].className=''
+                item[i].className=''
+            }
+        //被点击的li添加类名
+        this.className='active'
+        //获取被点击的li的索引号
+        let index=this.getAttribute('index')
+        item[index].className='item_curr'
+        })
+    }
+        
+
+</script>
+
+
+
+    
+</body>
+</html>
